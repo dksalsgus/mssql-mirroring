@@ -54,7 +54,9 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database.cs" />
     <Compile Include="Model\DBState.cs" />
+    <Compile Include="Repository\DatabaseRepo.cs" />
     <Compile Include="Repository\DBStateRepo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

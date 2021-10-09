@@ -34,15 +34,19 @@ namespace DBState
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblHACSSync = new System.Windows.Forms.Label();
-            this.lblHPLCSync = new System.Windows.Forms.Label();
             this.lblHACSState = new System.Windows.Forms.Label();
-            this.lblHPLCState = new System.Windows.Forms.Label();
+            this.txtACSSync = new System.Windows.Forms.TextBox();
+            this.txtACSState = new System.Windows.Forms.TextBox();
+            this.txtPLCState = new System.Windows.Forms.TextBox();
+            this.txtPLCSync = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(321, 60);
+            this.label2.Location = new System.Drawing.Point(304, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 12);
             this.label2.TabIndex = 1;
@@ -77,53 +81,89 @@ namespace DBState
             // lblHACSSync
             // 
             this.lblHACSSync.AutoSize = true;
-            this.lblHACSSync.Location = new System.Drawing.Point(116, 99);
+            this.lblHACSSync.Location = new System.Drawing.Point(38, 87);
             this.lblHACSSync.Name = "lblHACSSync";
-            this.lblHACSSync.Size = new System.Drawing.Size(38, 12);
+            this.lblHACSSync.Size = new System.Drawing.Size(69, 12);
             this.lblHACSSync.TabIndex = 6;
-            this.lblHACSSync.Text = "label4";
-            // 
-            // lblHPLCSync
-            // 
-            this.lblHPLCSync.AutoSize = true;
-            this.lblHPLCSync.Location = new System.Drawing.Point(381, 99);
-            this.lblHPLCSync.Name = "lblHPLCSync";
-            this.lblHPLCSync.Size = new System.Drawing.Size(38, 12);
-            this.lblHPLCSync.TabIndex = 7;
-            this.lblHPLCSync.Text = "label5";
+            this.lblHACSSync.Text = "동기화 상태";
             // 
             // lblHACSState
             // 
             this.lblHACSState.AutoSize = true;
-            this.lblHACSState.Location = new System.Drawing.Point(116, 141);
+            this.lblHACSState.Location = new System.Drawing.Point(66, 127);
             this.lblHACSState.Name = "lblHACSState";
-            this.lblHACSState.Size = new System.Drawing.Size(38, 12);
+            this.lblHACSState.Size = new System.Drawing.Size(29, 12);
             this.lblHACSState.TabIndex = 8;
-            this.lblHACSState.Text = "label4";
+            this.lblHACSState.Text = "상태";
             // 
-            // lblHPLCState
+            // txtACSSync
             // 
-            this.lblHPLCState.AutoSize = true;
-            this.lblHPLCState.Location = new System.Drawing.Point(381, 141);
-            this.lblHPLCState.Name = "lblHPLCState";
-            this.lblHPLCState.Size = new System.Drawing.Size(38, 12);
-            this.lblHPLCState.TabIndex = 9;
-            this.lblHPLCState.Text = "label5";
+            this.txtACSSync.Location = new System.Drawing.Point(113, 84);
+            this.txtACSSync.Name = "txtACSSync";
+            this.txtACSSync.ReadOnly = true;
+            this.txtACSSync.Size = new System.Drawing.Size(121, 21);
+            this.txtACSSync.TabIndex = 10;
             // 
-            // Form1
+            // txtACSState
+            // 
+            this.txtACSState.Location = new System.Drawing.Point(113, 124);
+            this.txtACSState.Name = "txtACSState";
+            this.txtACSState.ReadOnly = true;
+            this.txtACSState.Size = new System.Drawing.Size(121, 21);
+            this.txtACSState.TabIndex = 11;
+            // 
+            // txtPLCState
+            // 
+            this.txtPLCState.Location = new System.Drawing.Point(361, 124);
+            this.txtPLCState.Name = "txtPLCState";
+            this.txtPLCState.ReadOnly = true;
+            this.txtPLCState.Size = new System.Drawing.Size(117, 21);
+            this.txtPLCState.TabIndex = 15;
+            // 
+            // txtPLCSync
+            // 
+            this.txtPLCSync.Location = new System.Drawing.Point(361, 84);
+            this.txtPLCSync.Name = "txtPLCSync";
+            this.txtPLCSync.ReadOnly = true;
+            this.txtPLCSync.Size = new System.Drawing.Size(117, 21);
+            this.txtPLCSync.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(314, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "상태";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(286, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "동기화 상태";
+            // 
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 214);
-            this.Controls.Add(this.lblHPLCState);
+            this.Controls.Add(this.txtPLCState);
+            this.Controls.Add(this.txtPLCSync);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtACSState);
+            this.Controls.Add(this.txtACSSync);
             this.Controls.Add(this.lblHACSState);
-            this.Controls.Add(this.lblHPLCSync);
             this.Controls.Add(this.lblHACSSync);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Name = "Form1";
+            this.Name = "FrmMain";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -136,9 +176,13 @@ namespace DBState
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblHACSSync;
-        private System.Windows.Forms.Label lblHPLCSync;
         private System.Windows.Forms.Label lblHACSState;
-        private System.Windows.Forms.Label lblHPLCState;
+        private System.Windows.Forms.TextBox txtACSSync;
+        private System.Windows.Forms.TextBox txtACSState;
+        private System.Windows.Forms.TextBox txtPLCState;
+        private System.Windows.Forms.TextBox txtPLCSync;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 

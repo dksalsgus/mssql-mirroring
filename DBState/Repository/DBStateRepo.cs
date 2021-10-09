@@ -15,17 +15,25 @@ namespace DBState.Model
             var sql = @"SELECT AmrId, PrcsCD, TypeId, LayoutId, AmrNM, NetId, Host, Port, RealIP, RealPort, X, Y, LiftCnt, MDir, Area, Active, TravelDist, OprTime, StopTime, TMVersion, GMVersion, FWVersion FROM [TD_AMR] WHERE PrcsCD=@PrcsCD;";
             var cmd = new SqlCommand(sql);
             cmd.Parameters.Add("@PrcsCD", SqlDbType.VarChar).Value = PrcsCD;
-            return QueryAsync<DBState>(cmd, CreateAMREntity);
+            return QueryAsync<DBState>(cmd, CreateDBStateEntity);
         }
 
         public Task<List<DBState>> GetList()
         {
             var sql = @"SELECT * FROM sys.database_mirroring";
             var cmd = new SqlCommand(sql);
-            return QueryAsync<DBState>(cmd, CreateAMREntity);
+            return QueryAsync<DBState>(cmd, CreateDBStateEntity);
         }
 
-        private DBState CreateAMREntity(DbDataReader row)
+        public Task<DBState> Select(int DbId)
+        {
+            var sql = @"Select * from sysdatabases where dbid=@dbid;";
+            var cmd = new SqlCommand(sql);
+            cmd.Parameters.Add("@dbid", SqlDbType.Int).Value = DbId;
+            return QuerySingleAsync<DBState>(cmd, CreateDBStateEntity);
+        }
+
+        private DBState CreateDBStateEntity(DbDataReader row)
         {
             var d = new DBState();
             d.mirroring_state_desc = (row["mirroring_state_desc"] is DBNull) ? string.Empty : Convert.ToString(row["mirroring_state_desc"]);
@@ -61,7 +69,7 @@ namespace DBState.Model
             var sql = @"SELECT AmrId, PrcsCD, TypeId, LayoutId, AmrNM, NetId, Host, Port, RealIP, RealPort, X, Y, LiftCnt, MDir, Area, Active, TravelDist, OprTime, StopTime, TMVersion, GMVersion, FWVersion FROM [TD_AMR] WHERE NetId=@NetId;";
             var cmd = new SqlCommand(sql);
             cmd.Parameters.Add("@NetId", SqlDbType.Int).Value = NetId;
-            return QuerySingleAsync<DBState>(cmd, CreateAMREntity);
+            return QuerySingleAsync<DBState>(cmd, CreateDBStateEntity);
         }
 
         public Task<List<DBState>> SelectByLayoutId(int layoutId)
@@ -69,7 +77,7 @@ namespace DBState.Model
             var sql = @"SELECT AmrId, PrcsCD, TypeId, LayoutId, AmrNM, NetId, Host, Port, RealIP, RealPort, X, Y, LiftCnt, MDir, Area, Active, TravelDist, OprTime, StopTime, TMVersion, GMVersion, FWVersion FROM [TD_AMR] WHERE LayoutId=@layoutId;";
             var cmd = new SqlCommand(sql);
             cmd.Parameters.Add("@LayoutId", SqlDbType.Int).Value = layoutId;
-            return QueryAsync<DBState>(cmd, CreateAMREntity);
+            return QueryAsync<DBState>(cmd, CreateDBStateEntity);
         }
 
         public Task<List<DBState>> SelectByPrcsCD(string PrcsCD)
@@ -77,7 +85,7 @@ namespace DBState.Model
             var sql = @"SELECT AmrId, PrcsCD, TypeId, LayoutId, AmrNM, NetId, Host, Port, RealIP, RealPort, X, Y, LiftCnt, MDir, Area, Active, TravelDist, OprTime, StopTime, TMVersion, GMVersion, FWVersion FROM [TD_AMR] WHERE PrcsCD=@PrcsCD;";
             var cmd = new SqlCommand(sql);
             cmd.Parameters.Add("@PrcsCD", SqlDbType.VarChar).Value = PrcsCD;
-            return QueryAsync<DBState>(cmd, CreateAMREntity);
+            return QueryAsync<DBState>(cmd, CreateDBStateEntity);
         }
 
         public Task<List<DBState>> SelectByPrcsCD(SqlConnection connection, string PrcsCD)
@@ -86,7 +94,7 @@ namespace DBState.Model
 						 WHERE PrcsCD=@PrcsCD ORDER BY AmrNM; ";
             var cmd = new SqlCommand(sql);
             cmd.Parameters.Add("@PrcsCD", SqlDbType.VarChar).Value = PrcsCD;
-            return QueryAsync<DBState>(connection, cmd, CreateAMREntity);
+            return QueryAsync<DBState>(connection, cmd, CreateDBStateEntity);
         }
 
         public async Task<int> Insert(DBState d)
