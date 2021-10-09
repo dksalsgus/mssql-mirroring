@@ -26,6 +26,18 @@ namespace DBState
         {
             base.OnLoad(e);
             Task.Run(() => GetListMirror());
+            btnACSFailOver.Click += BtnACSFailOver_Click;
+            btnPLCFailOver.Click += BtnPLCFailOver_Click;
+        }
+
+        private void BtnPLCFailOver_Click(object sender, EventArgs e)
+        {
+            SetFailOver(_acsDBName);
+        }
+
+        private void BtnACSFailOver_Click(object sender, EventArgs e)
+        {
+            SetFailOver(_plcDBName);
         }
 
         private async Task GetListMirror()
@@ -96,14 +108,15 @@ namespace DBState
             }
         }
 
-        private async void FindDB(List<DBState.Model.DBState> dbList)
+        private async void SetFailOver(string dbName)
         {
             try
             {
+                var ret = await _dbRepo.FailOver(dbName);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("FindDB Error : {0}", ex);
+                Console.WriteLine("SetFailOver Error : {0}", ex);
                 throw;
             }
         }

@@ -31,7 +31,7 @@ namespace DBState
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnACSFailOver = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblHACSSync = new System.Windows.Forms.Label();
             this.lblHACSState = new System.Windows.Forms.Label();
@@ -41,6 +41,7 @@ namespace DBState
             this.txtPLCSync = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnPLCFailOver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -60,14 +61,14 @@ namespace DBState
             this.label3.TabIndex = 2;
             this.label3.Text = "ACS 데이터베이스 현재상태";
             // 
-            // button2
+            // btnACSFailOver
             // 
-            this.button2.Location = new System.Drawing.Point(450, 179);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnACSFailOver.Location = new System.Drawing.Point(134, 179);
+            this.btnACSFailOver.Name = "btnACSFailOver";
+            this.btnACSFailOver.Size = new System.Drawing.Size(75, 23);
+            this.btnACSFailOver.TabIndex = 4;
+            this.btnACSFailOver.Text = "전환";
+            this.btnACSFailOver.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -146,11 +147,21 @@ namespace DBState
             this.label5.TabIndex = 12;
             this.label5.Text = "동기화 상태";
             // 
+            // btnPLCFailOver
+            // 
+            this.btnPLCFailOver.Location = new System.Drawing.Point(381, 179);
+            this.btnPLCFailOver.Name = "btnPLCFailOver";
+            this.btnPLCFailOver.Size = new System.Drawing.Size(75, 23);
+            this.btnPLCFailOver.TabIndex = 16;
+            this.btnPLCFailOver.Text = "전환";
+            this.btnPLCFailOver.UseVisualStyleBackColor = true;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 214);
+            this.Controls.Add(this.btnPLCFailOver);
             this.Controls.Add(this.txtPLCState);
             this.Controls.Add(this.txtPLCSync);
             this.Controls.Add(this.label4);
@@ -160,7 +171,7 @@ namespace DBState
             this.Controls.Add(this.lblHACSState);
             this.Controls.Add(this.lblHACSSync);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnACSFailOver);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "FrmMain";
@@ -173,7 +184,7 @@ namespace DBState
         #endregion
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnACSFailOver;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblHACSSync;
         private System.Windows.Forms.Label lblHACSState;
@@ -183,6 +194,7 @@ namespace DBState
         private System.Windows.Forms.TextBox txtPLCSync;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnPLCFailOver;
     }
 }
 

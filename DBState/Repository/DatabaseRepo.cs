@@ -18,6 +18,14 @@ namespace DBState.Model
             return QuerySingleAsync<Database>(cmd, CreateDBEntity);
         }
 
+        public Task<int> FailOver(string database_name)
+        {
+            var sql = @"ALTER DATABASE " + database_name + " SET PARTNER FAILOVER;";
+            var cmd = new SqlCommand(sql);
+            //cmd.Parameters.Add("@database_name", SqlDbType.VarChar).Value = database_name;
+            return ExecuteNonQueryAsync(cmd);
+        }
+
         public Task<Database> GetList()
         {
             var sql = @"SELECT * FROM sysdatabases;";
