@@ -22,7 +22,7 @@ namespace DBState
             _dbRepo = new DatabaseRepo();
         }
 
-        protected override async void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             Task.Run(() => GetListMirror());
