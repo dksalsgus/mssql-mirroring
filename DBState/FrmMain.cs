@@ -1,19 +1,16 @@
 ﻿using DBState.Model;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace DBState
 {
-    public partial class Form1 : Form
+    public partial class FrmMain : Form
     {
         private DBStateRepo _repo;
         private List<DBState.Model.DBState> _dbList;
-        public Form1()
+
+        public FrmMain()
         {
             InitializeComponent();
             _repo = new DBStateRepo();
@@ -22,7 +19,7 @@ namespace DBState
         protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _dbList= await GetList();
+            _dbList = await GetList();
         }
 
         private async System.Threading.Tasks.Task<List<Model.DBState>> GetList()
@@ -32,18 +29,16 @@ namespace DBState
             return mirrorList;
         }
 
-        void FindDB(List<DBState.Model.DBState> dbList)
+        private void FindDB(List<DBState.Model.DBState> dbList)
         {
             try
             {
-                
             }
             catch (Exception ex)
             {
-                Console.WriteLine("FindDB Error : {0}",ex);
+                Console.WriteLine("FindDB Error : {0}", ex);
                 throw;
             }
         }
-
     }
 }
