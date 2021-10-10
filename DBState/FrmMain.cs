@@ -12,8 +12,12 @@ namespace DBState
         private DatabaseRepo _dbRepo;
         private List<DBState.Model.DBState> _dbList;
 
-        private const string _acsDBName = "HACS_DB_32AGV_M";
-        private const string _plcDBName = "HPLC_DB_32AGV_M";
+        //private const string _acsDBName = "HACS_DB_32AGV_M";
+        //private const string _plcDBName = "HPLC_DB_32AGV_M";
+
+
+        private const string _acsDBName = "HACS_DB_32AGV";
+        private const string _plcDBName = "HPLC_DB_32AGV";
 
         public FrmMain()
         {
@@ -32,12 +36,12 @@ namespace DBState
 
         private void BtnPLCFailOver_Click(object sender, EventArgs e)
         {
-            SetFailOver(_acsDBName);
+            SetFailOver(_plcDBName);
         }
 
         private void BtnACSFailOver_Click(object sender, EventArgs e)
         {
-            SetFailOver(_plcDBName);
+            SetFailOver(_acsDBName);
         }
 
         private async Task GetListMirror()
@@ -59,12 +63,14 @@ namespace DBState
                                 {
                                     txtACSSync.Text = item.mirroring_state_desc;
                                     txtACSState.Text = item.mirroring_role_desc;
+                                    btnACSFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
                                 }));
                             }
                             else
                             {
                                 txtACSSync.Text = item.mirroring_state_desc;
                                 txtACSState.Text = item.mirroring_role_desc;
+                                    btnACSFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
                             }
                         }
                         else if (db.name == _plcDBName)
@@ -75,12 +81,14 @@ namespace DBState
                                 {
                                     txtPLCSync.Text = item.mirroring_state_desc;
                                     txtPLCState.Text = item.mirroring_role_desc;
+                                    btnPLCFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
                                 }));
                             }
                             else
                             {
                                 txtPLCSync.Text = item.mirroring_state_desc;
                                 txtPLCState.Text = item.mirroring_role_desc;
+                                    btnPLCFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
                             }
                         }
                     }
