@@ -29,19 +29,42 @@ namespace DBState
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            this.CenterToScreen();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             Task.Run(() => GetListMirror());
             btnACSFailOver.Click += BtnACSFailOver_Click;
             btnPLCFailOver.Click += BtnPLCFailOver_Click;
         }
 
-        private void BtnPLCFailOver_Click(object sender, EventArgs e)
+        private async void BtnPLCFailOver_Click(object sender, EventArgs e)
         {
-            SetFailOver(_plcDBName);
+            try
+            {
+                btnPLCFailOver.Enabled = false;
+                await SetFailOver(_plcDBName);
+            }
+            catch (Exception)
+            {
+            }finally
+            {
+                btnPLCFailOver.Enabled = true;
+            }
         }
 
-        private void BtnACSFailOver_Click(object sender, EventArgs e)
+        private async void BtnACSFailOver_Click(object sender, EventArgs e)
         {
-            SetFailOver(_acsDBName);
+            try
+            {
+                btnACSFailOver.Enabled = false;
+                await SetFailOver(_acsDBName);
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                btnACSFailOver.Enabled = true;
+            }
         }
 
         private async Task GetListMirror()
@@ -70,7 +93,7 @@ namespace DBState
                             {
                                 txtACSSync.Text = item.mirroring_state_desc;
                                 txtACSState.Text = item.mirroring_role_desc;
-                                    btnACSFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
+                                btnACSFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
                             }
                         }
                         else if (db.name == _plcDBName)
@@ -88,7 +111,7 @@ namespace DBState
                             {
                                 txtPLCSync.Text = item.mirroring_state_desc;
                                 txtPLCState.Text = item.mirroring_role_desc;
-                                    btnPLCFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
+                                btnPLCFailOver.Enabled = item.mirroring_role_desc == "PRINCIPAL" ? true : false;
                             }
                         }
                     }
@@ -116,7 +139,7 @@ namespace DBState
             }
         }
 
-        private async void SetFailOver(string dbName)
+        private async Task SetFailOver(string dbName)
         {
             try
             {
@@ -125,7 +148,7 @@ namespace DBState
             catch (Exception ex)
             {
                 Console.WriteLine("SetFailOver Error : {0}", ex);
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
     }

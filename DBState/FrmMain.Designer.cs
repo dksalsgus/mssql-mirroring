@@ -174,6 +174,7 @@ namespace DBState
             this.Controls.Add(this.btnACSFailOver);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.DoubleBuffered = true;
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.ResumeLayout(false);
